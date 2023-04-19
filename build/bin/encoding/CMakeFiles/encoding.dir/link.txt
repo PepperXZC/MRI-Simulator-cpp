@@ -1,0 +1,2 @@
+/usr/bin/ar qc libencoding.a CMakeFiles/encoding.dir/encoding.cpp.o
+/usr/bin/ranlib libencoding.a

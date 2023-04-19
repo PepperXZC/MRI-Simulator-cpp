@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.14)
+PROJECT (main)
+add_subdirectory(src bin)
+find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(yaml-cpp REQUIRED)
+find_package(OpenCV 4.0.0 REQUIRED)
+include_directories($(PROJECT_SOURCE_DIR)/src/Bloch)
+include_directories($(PROJECT_SOURCE_DIR)/src/info)
+include_directories($(PROJECT_SOURCE_DIR)/src/SeqLoader)
+include_directories($(PROJECT_SOURCE_DIR)/src/encoding)
+include_directories($(PROJECT_SOURCE_DIR)/src)
+include_directories($(PROJECT_SOURCE_DIR)/include)
+# include_directories(${OpenCV_INCLUDE_DIRS})
+
+
+# message(STATUS "OpenCV library status:")
+# message(STATUS "    version: ${OpenCV_VERSION}")
+# message(STATUS "    libraries: ${OpenCV_LIBS}")
+# message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+# include_directories ("/usr/include/opencv4/")
