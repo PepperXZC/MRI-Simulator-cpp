@@ -12,7 +12,8 @@
 using std::ofstream;
 int main()
 {
-    std::string seq_path = "./sequence/bSSFP_TR2o8.yaml";
+    // std::string seq_path = "./sequence/bSSFP_TR2o8.yaml";
+    std::string seq_path = "/home/xzc/cpp/sequence/bSSFP_TR2o8.yaml";
     SeqLoader sequence(seq_path);
 
 
@@ -25,23 +26,26 @@ int main()
 
     std::cout << test_simulator.test_Mat << std::endl;
     ofstream fout;
-    // fout.open("mat.txt", std::ios::app);
-    // fout << test_simulator.data << std::endl;
-    // fout.close();
-    cv::Mat img1;
-    cv::Mat 
-    cv::eigen2cv(test_simulator.test_Mat, img1);
-    cv::imshow("now.png", img1);
-    while(1)
-    {
-        int key = cv::waitKey(0);
+    fout.open("real_mat.txt", std::ios::trunc);
+    fout << test_simulator.real_data << std::endl;
+    fout.close();
+    fout.open("img_mat.txt", std::ios::trunc);
+    fout << test_simulator.img_data << std::endl;
+    fout.close();
+    // cv::Mat img1;
+    // cv::Mat 
+    // cv::eigen2cv(test_simulator.test_Mat, img1);
+    // cv::imshow("now.png", img1);
+    // while(1)
+    // {
+    //     int key = cv::waitKey(0);
         
-            if (key == 'q')
-            {
-            cv::destroyAllWindows();
-            break;
-            }
-    }
+    //         if (key == 'q')
+    //         {
+    //         cv::destroyAllWindows();
+    //         break;
+    //         }
+    // }
 
     // cv::Mat cvM1;
     // cv::FileStorage cvfs("data.xml", cv::FileStorage::WRITE);

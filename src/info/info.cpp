@@ -29,7 +29,7 @@ pool_info::pool_info(double fov, double delta, double z0, double HR, double flow
     this->delta = delta;
     this->z0 = z0;                                            
     this->HR = HR;
-    this->bandwidth = bandwidth / delta;
+    this->bandwidth = bandwidth;        // cm
     this->flow_speed = flow_speed;
     this->N_read = int(fov / delta);
     this->N_pe = int(fov / delta);
@@ -111,7 +111,7 @@ void Voxel::proton_sum()
         y = y + protons[i].M(1);
         z = z + protons[i].M(2);
     }
-    M << x / protons.size(), y / protons.size(), z / protons.size();
+    this->M << x / protons.size(), y / protons.size(), z / protons.size();
 }
 
 pool::pool(const pool_info& info)
@@ -130,8 +130,10 @@ pool::~pool()
 void pool::index_generate()
 {
     // one vassel
-    int center = int(pool_length / 2); int half = int(pool_args.bandwidth / 2);     // usually even center
+    int width = pool_args.bandwidth / pool_args.delta;
+    int center = int(pool_length / 2); int half = int(width / 2);     // usually even center
     int lower = center - half; int upper = center + half;
+    std::cout << lower << " " << upper << std::endl;
     for (int i = 0; i < pool_length; i++){
         for (int j = 0; j < pool_length; j ++){
             for (int k = 0; k < pool_length; k++){          // z : from bottom to top
@@ -150,7 +152,7 @@ Vector3d pool::index_to_position(Vector3d index)
 {
     Vector3d res;
     double x = - pool_args.fov / 2 + index(0) * pool_args.delta;
-    double y = pool_args.fov / 2 - index(1) * pool_args.delta;
+    double y = pool_args.fov / 2 - index(1) * pool_args.delta; // y == 0 : index == 32
     double z = index(2) * pool_args.delta;
     res << x, y, z;
     return res;
@@ -166,11 +168,11 @@ void pool::data_initialize()
         }
     }
     int s = 1;
-    Vector3d M_init = {0, 0, 1};
     for (int i = 0; i < vassel_index_vector.size(); i++)
     {
         Vector3d pos_index = vassel_index_vector[i];
-        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2)); 
+        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2));
+        Vector3d M_init = {0, 0, 1}; 
         body[x][y][z].initialize(pool_args.T_vassel, 1, index_to_position(pos_index), M_init);
         // std::cout << x << " " << y << " " << z << " " << index_to_position(pos_index)(0) << " " << index_to_position(pos_index)(1) << " " << index_to_position(pos_index)(2) << " " << std::endl;
         s += 1;
@@ -178,7 +180,8 @@ void pool::data_initialize()
     for (int i = 0; i < tissue_index_vector.size(); i++)
     {
         Vector3d pos_index = tissue_index_vector[i];
-        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2)); 
+        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2));
+        Vector3d M_init = {0, 0, 1}; 
         body[x][y][z].initialize(pool_args.T_tissue, 0, index_to_position(pos_index), M_init);
         s += 1;
     }

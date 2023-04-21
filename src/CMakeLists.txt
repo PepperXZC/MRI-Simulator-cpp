@@ -17,7 +17,7 @@ target_link_libraries(bSSFPSeq encoding)
 # include_directories(${OpenCV_INCLUDE_DIRS})
 # target_link_libraries(bSSFPSeq ${OpenCV_LIBS})
 find_package(OpenCV 4.0.0 REQUIRED)
-target_link_libraries(bSSFPSeq ${OpenCV_LIBS})
+
 
 
 message(STATUS "OpenCV library status:")

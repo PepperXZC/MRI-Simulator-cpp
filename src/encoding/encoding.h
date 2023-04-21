@@ -6,11 +6,12 @@
 #include "../Bloch/Bloch.h"
 #include "../info/info.h"
 #include "../SeqLoader/SeqLoader.h"
+// #include "omp.h"
 // #include "../../include/tqdm/tqdm.h"
 
 using Eigen::Matrix;
 using Eigen::Vector3d;
-typedef Matrix<complex<double>, Eigen::Dynamic, Eigen::Dynamic> Mat;
+typedef Matrix<double, Eigen::Dynamic, Eigen::Dynamic> Mat;
 const int MAX_length = 999;
 
 class Simulator: public SeqLoader, pool
@@ -18,8 +19,8 @@ class Simulator: public SeqLoader, pool
 private:
     void progress(bool flow);
     void mat_initialize();
-    Voxel ***sliced_body;
-    int int_z0, int_tikn;
+    // Voxel ***sliced_body;
+    int slice_lower = 0, slice_upper = 0; // [slice_lower, slice_upper]
 public:
     Simulator(const SeqLoader &Seq, const pool &pl);
     ~Simulator();
@@ -31,9 +32,9 @@ public:
     void check_readout_record(int readout_index);
     void load_seqence();
     Matrix<double, Eigen::Dynamic, Eigen::Dynamic> test_Mat;
-    Mat data;
+    Mat real_data, img_data;
     
-    vector<Mat> result_list;
+    // vector<Mat> result_list;
 };
 
 #endif
