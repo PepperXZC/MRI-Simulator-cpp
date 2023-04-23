@@ -103,7 +103,7 @@ public:
     int pool_length;
     vector<Vector3d> vassel_index_vector, tissue_index_vector;
     Vector3d index_to_position(Vector3d index);
-    
+    void pool_roll(); 
     pool_info pool_args;
     Voxel ***body;
     pool(const pool_info& info);
