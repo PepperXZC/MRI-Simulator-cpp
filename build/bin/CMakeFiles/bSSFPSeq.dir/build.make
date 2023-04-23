@@ -96,6 +96,7 @@ bin/bSSFPSeq: bin/Bloch/libBloch.a
 bin/bSSFPSeq: bin/SeqLoader/libSeqLoader.a
 bin/bSSFPSeq: bin/info/libinfo.a
 bin/bSSFPSeq: bin/encoding/libencoding.a
+bin/bSSFPSeq: bin/flow/libflow.a
 bin/bSSFPSeq: /usr/local/lib/libopencv_gapi.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_highgui.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_ml.so.4.7.0
@@ -104,9 +105,12 @@ bin/bSSFPSeq: /usr/local/lib/libopencv_photo.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_stitching.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_video.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_videoio.so.4.7.0
+bin/bSSFPSeq: bin/encoding/libencoding.a
 bin/bSSFPSeq: bin/Bloch/libBloch.a
 bin/bSSFPSeq: bin/SeqLoader/libSeqLoader.a
 bin/bSSFPSeq: bin/info/libinfo.a
+bin/bSSFPSeq: /usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so
+bin/bSSFPSeq: /usr/lib/x86_64-linux-gnu/libpthread.a
 bin/bSSFPSeq: /usr/local/lib/libopencv_imgcodecs.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_dnn.so.4.7.0
 bin/bSSFPSeq: /usr/local/lib/libopencv_calib3d.so.4.7.0

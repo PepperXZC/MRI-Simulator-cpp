@@ -235,6 +235,9 @@
 		},
 		{
 			"path" : "src/encoding/CMakeLists.txt"
+		},
+		{
+			"path" : "src/flow/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

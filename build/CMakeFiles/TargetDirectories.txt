@@ -15,3 +15,6 @@
 /home/xzc/cpp/build/bin/encoding/CMakeFiles/encoding.dir
 /home/xzc/cpp/build/bin/encoding/CMakeFiles/edit_cache.dir
 /home/xzc/cpp/build/bin/encoding/CMakeFiles/rebuild_cache.dir
+/home/xzc/cpp/build/bin/flow/CMakeFiles/flow.dir
+/home/xzc/cpp/build/bin/flow/CMakeFiles/edit_cache.dir
+/home/xzc/cpp/build/bin/flow/CMakeFiles/rebuild_cache.dir

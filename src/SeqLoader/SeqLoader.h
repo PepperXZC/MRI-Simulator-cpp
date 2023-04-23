@@ -4,6 +4,7 @@
 #include <map>
 #include <iostream>
 #include <yaml-cpp/yaml.h>
+#include <math.h>
 
 using std::map;
 using std::string;
@@ -15,7 +16,9 @@ enum operation_type
     NONE,
     PULSE,
     ADC,
-    ENCODING
+    ENCODING,
+    READOUT,
+    FLOW
 };
 
 struct operation
@@ -29,7 +32,9 @@ struct operation
     double t;
     int line_index;
     int sample_index;
+    bool readout_seq;
     operation();
+    operation(const operation &op);
 };
 
 class SeqLoader
@@ -41,6 +46,19 @@ public:
 private:
     void seq_load();
     Node seq_node;
-    std::string path;
+    std::string sequence_path;
+};
+
+class molli_sequence : public SeqLoader
+{
+private:
+    string molli_path;
+    Node molli_node;
+    // bool flow;
+public:
+    vector<operation> molli_list;
+    void molli_read();
+    molli_sequence(const SeqLoader &ro, const string mpath);
+    ~molli_sequence();
 };
 #endif

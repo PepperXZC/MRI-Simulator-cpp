@@ -171,7 +171,7 @@ void pool::data_initialize()
     for (int i = 0; i < vassel_index_vector.size(); i++)
     {
         Vector3d pos_index = vassel_index_vector[i];
-        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2));
+        int x = pos_index(0); int y = pos_index(1); int z = pos_index(2);
         Vector3d M_init = {0, 0, 1}; 
         body[x][y][z].initialize(pool_args.T_vassel, 1, index_to_position(pos_index), M_init);
         // std::cout << x << " " << y << " " << z << " " << index_to_position(pos_index)(0) << " " << index_to_position(pos_index)(1) << " " << index_to_position(pos_index)(2) << " " << std::endl;
@@ -188,6 +188,20 @@ void pool::data_initialize()
     std::cout << s << std::endl;
 }
 
+
+void pool::pool_roll()
+{
+    // for (int j = 0; j < pool_length; j++)
+    //     for (int i = pool_length - 1; i >= 0; i--)
+    //         {
+    //             for (int k = 0; k < pool_length; k++)
+    //         }
+    for (Vector3d pos_index : vassel_index_vector)
+    {
+        int x = pos_index(0); int y = pos_index(1); int z = pos_index(2);
+        
+    }
+}
 // friend bool operator< (const Voxel& vox1, const Voxel& vox2)
 // {
 //     if (vox1.index < vox2.index)

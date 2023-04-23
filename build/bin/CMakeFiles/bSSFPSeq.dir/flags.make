@@ -6,5 +6,5 @@ CXX_DEFINES = -DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT
 
 CXX_INCLUDES = -isystem /usr/local/include/opencv4
 
-CXX_FLAGS = -g
+CXX_FLAGS = -g -fopenmp
 

@@ -83,6 +83,7 @@ bin/all: bin/Bloch/all
 bin/all: bin/info/all
 bin/all: bin/SeqLoader/all
 bin/all: bin/encoding/all
+bin/all: bin/flow/all
 .PHONY : bin/all
 
 # Recursive "preinstall" directory target.
@@ -90,6 +91,7 @@ bin/preinstall: bin/Bloch/preinstall
 bin/preinstall: bin/info/preinstall
 bin/preinstall: bin/SeqLoader/preinstall
 bin/preinstall: bin/encoding/preinstall
+bin/preinstall: bin/flow/preinstall
 .PHONY : bin/preinstall
 
 # Recursive "clean" directory target.
@@ -98,6 +100,7 @@ bin/clean: bin/Bloch/clean
 bin/clean: bin/info/clean
 bin/clean: bin/SeqLoader/clean
 bin/clean: bin/encoding/clean
+bin/clean: bin/flow/clean
 .PHONY : bin/clean
 
 #=============================================================================
@@ -146,6 +149,21 @@ bin/encoding/clean: bin/encoding/CMakeFiles/encoding.dir/clean
 .PHONY : bin/encoding/clean
 
 #=============================================================================
+# Directory level rules for directory bin/flow
+
+# Recursive "all" directory target.
+bin/flow/all: bin/flow/CMakeFiles/flow.dir/all
+.PHONY : bin/flow/all
+
+# Recursive "preinstall" directory target.
+bin/flow/preinstall:
+.PHONY : bin/flow/preinstall
+
+# Recursive "clean" directory target.
+bin/flow/clean: bin/flow/CMakeFiles/flow.dir/clean
+.PHONY : bin/flow/clean
+
+#=============================================================================
 # Directory level rules for directory bin/info
 
 # Recursive "all" directory target.
@@ -168,6 +186,7 @@ bin/CMakeFiles/bSSFPSeq.dir/all: bin/Bloch/CMakeFiles/Bloch.dir/all
 bin/CMakeFiles/bSSFPSeq.dir/all: bin/info/CMakeFiles/info.dir/all
 bin/CMakeFiles/bSSFPSeq.dir/all: bin/SeqLoader/CMakeFiles/SeqLoader.dir/all
 bin/CMakeFiles/bSSFPSeq.dir/all: bin/encoding/CMakeFiles/encoding.dir/all
+bin/CMakeFiles/bSSFPSeq.dir/all: bin/flow/CMakeFiles/flow.dir/all
 	$(MAKE) $(MAKESILENT) -f bin/CMakeFiles/bSSFPSeq.dir/build.make bin/CMakeFiles/bSSFPSeq.dir/depend
 	$(MAKE) $(MAKESILENT) -f bin/CMakeFiles/bSSFPSeq.dir/build.make bin/CMakeFiles/bSSFPSeq.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xzc/cpp/build/CMakeFiles --progress-num=5,6 "Built target bSSFPSeq"
@@ -175,7 +194,7 @@ bin/CMakeFiles/bSSFPSeq.dir/all: bin/encoding/CMakeFiles/encoding.dir/all
 
 # Build rule for subdir invocation for target.
 bin/CMakeFiles/bSSFPSeq.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/CMakeFiles/bSSFPSeq.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 0
 .PHONY : bin/CMakeFiles/bSSFPSeq.dir/rule
@@ -222,7 +241,7 @@ bin/Bloch/CMakeFiles/Bloch.dir/clean:
 bin/info/CMakeFiles/info.dir/all:
 	$(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/depend
 	$(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xzc/cpp/build/CMakeFiles --progress-num=9,10 "Built target info"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xzc/cpp/build/CMakeFiles --progress-num=11,12 "Built target info"
 .PHONY : bin/info/CMakeFiles/info.dir/all
 
 # Build rule for subdir invocation for target.
@@ -294,6 +313,35 @@ encoding: bin/encoding/CMakeFiles/encoding.dir/rule
 bin/encoding/CMakeFiles/encoding.dir/clean:
 	$(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/clean
 .PHONY : bin/encoding/CMakeFiles/encoding.dir/clean
+
+#=============================================================================
+# Target rules for target bin/flow/CMakeFiles/flow.dir
+
+# All Build rule for target.
+bin/flow/CMakeFiles/flow.dir/all: bin/Bloch/CMakeFiles/Bloch.dir/all
+bin/flow/CMakeFiles/flow.dir/all: bin/info/CMakeFiles/info.dir/all
+bin/flow/CMakeFiles/flow.dir/all: bin/SeqLoader/CMakeFiles/SeqLoader.dir/all
+bin/flow/CMakeFiles/flow.dir/all: bin/encoding/CMakeFiles/encoding.dir/all
+	$(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/depend
+	$(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xzc/cpp/build/CMakeFiles --progress-num=9,10 "Built target flow"
+.PHONY : bin/flow/CMakeFiles/flow.dir/all
+
+# Build rule for subdir invocation for target.
+bin/flow/CMakeFiles/flow.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 10
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/CMakeFiles/flow.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 0
+.PHONY : bin/flow/CMakeFiles/flow.dir/rule
+
+# Convenience name for target.
+flow: bin/flow/CMakeFiles/flow.dir/rule
+.PHONY : flow
+
+# clean rule for target.
+bin/flow/CMakeFiles/flow.dir/clean:
+	$(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/clean
+.PHONY : bin/flow/CMakeFiles/flow.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

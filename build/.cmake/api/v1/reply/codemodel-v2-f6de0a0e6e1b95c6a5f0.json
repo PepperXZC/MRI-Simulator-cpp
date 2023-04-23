@@ -25,7 +25,8 @@
 						2,
 						3,
 						4,
-						5
+						5,
+						6
 					],
 					"jsonFile" : "directory-bin-Debug-d9d930c29adfb4e01db4.json",
 					"minimumCMakeVersion" : 
@@ -67,7 +68,7 @@
 					"source" : "src/info",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -99,6 +100,21 @@
 					[
 						3
 					]
+				},
+				{
+					"build" : "bin/flow",
+					"jsonFile" : "directory-bin.flow-Debug-40631627738ad29ec05a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 6,
+					"source" : "src/flow",
+					"targetIndexes" : 
+					[
+						4
+					]
 				}
 			],
 			"name" : "Debug",
@@ -121,7 +137,8 @@
 						2,
 						3,
 						4,
-						5
+						5,
+						6
 					],
 					"directoryIndexes" : 
 					[
@@ -155,7 +172,7 @@
 					"parentIndex" : 1,
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -181,6 +198,18 @@
 					[
 						3
 					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "flow",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						4
+					]
 				}
 			],
 			"targets" : 
@@ -202,16 +231,23 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "bSSFPSeq::@90a2315b7a9c97cd24d2",
-					"jsonFile" : "target-bSSFPSeq-Debug-944bd9c69eebf628405c.json",
+					"jsonFile" : "target-bSSFPSeq-Debug-5fff3ab2f2a6ca5636af.json",
 					"name" : "bSSFPSeq",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "encoding::@e7cedc7f7db06c7ff3ad",
-					"jsonFile" : "target-encoding-Debug-a0415b6472e737f43e20.json",
+					"jsonFile" : "target-encoding-Debug-9c491bce05365af2c6d6.json",
 					"name" : "encoding",
 					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "flow::@d475772301841a524936",
+					"jsonFile" : "target-flow-Debug-86a349a62b9e020f3e6b.json",
+					"name" : "flow",
+					"projectIndex" : 6
 				},
 				{
 					"directoryIndex" : 3,

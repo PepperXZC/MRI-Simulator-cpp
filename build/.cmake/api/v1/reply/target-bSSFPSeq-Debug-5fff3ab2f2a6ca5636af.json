@@ -26,12 +26,6 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
 				"line" : 11,
 				"parent" : 0
 			},
@@ -54,9 +48,21 @@
 				"parent" : 0
 			},
 			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 28,
+				"line" : 30,
 				"parent" : 0
 			}
 		]
@@ -68,12 +74,16 @@
 			[
 				{
 					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-fopenmp"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 6,
+					"backtrace" : 7,
 					"define" : "OPENCV_DISABLE_EIGEN_TENSOR_SUPPORT"
 				}
 			],
@@ -109,6 +119,10 @@
 		{
 			"backtrace" : 5,
 			"id" : "encoding::@e7cedc7f7db06c7ff3ad"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "flow::@d475772301841a524936"
 		}
 	],
 	"id" : "bSSFPSeq::@90a2315b7a9c97cd24d2",
@@ -146,6 +160,11 @@
 			{
 				"backtrace" : 5,
 				"fragment" : "encoding/libencoding.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "flow/libflow.a",
 				"role" : "libraries"
 			},
 			{
@@ -189,6 +208,11 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 5,
+				"fragment" : "encoding/libencoding.a",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 2,
 				"fragment" : "Bloch/libBloch.a",
 				"role" : "libraries"
@@ -199,12 +223,20 @@
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "-lyaml-cpp",
+				"backtrace" : 4,
+				"fragment" : "info/libinfo.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
-				"fragment" : "info/libinfo.a",
+				"fragment" : "/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libpthread.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lyaml-cpp",
 				"role" : "libraries"
 			},
 			{

@@ -795,7 +795,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "6"
+			"value" : "7"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1504,6 +1504,42 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/xzc/cpp/src/encoding"
+		},
+		{
+			"name" : "flow_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/xzc/cpp/build/bin/flow"
+		},
+		{
+			"name" : "flow_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "flow_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/xzc/cpp/src/flow"
 		},
 		{
 			"name" : "info_BINARY_DIR",

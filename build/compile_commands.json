@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/xzc/cpp/build/bin",
-  "command": "/usr/bin/g++ -DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT -isystem /usr/local/include/opencv4 -g -o CMakeFiles/bSSFPSeq.dir/main.cpp.o -c /home/xzc/cpp/src/main.cpp",
+  "command": "/usr/bin/g++ -DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT -isystem /usr/local/include/opencv4 -g -fopenmp -o CMakeFiles/bSSFPSeq.dir/main.cpp.o -c /home/xzc/cpp/src/main.cpp",
   "file": "/home/xzc/cpp/src/main.cpp"
 },
 {
@@ -21,7 +21,12 @@
 },
 {
   "directory": "/home/xzc/cpp/build/bin/encoding",
-  "command": "/usr/bin/g++  -I/home/xzc/cpp/src/encoding/$(PROJECT_SOURCE_DIR)/include -g -o CMakeFiles/encoding.dir/encoding.cpp.o -c /home/xzc/cpp/src/encoding/encoding.cpp",
+  "command": "/usr/bin/g++  -I/home/xzc/cpp/src/encoding/$(PROJECT_SOURCE_DIR)/include -g -fopenmp -o CMakeFiles/encoding.dir/encoding.cpp.o -c /home/xzc/cpp/src/encoding/encoding.cpp",
   "file": "/home/xzc/cpp/src/encoding/encoding.cpp"
+},
+{
+  "directory": "/home/xzc/cpp/build/bin/flow",
+  "command": "/usr/bin/g++   -g -fopenmp -o CMakeFiles/flow.dir/flow.cpp.o -c /home/xzc/cpp/src/flow/flow.cpp",
+  "file": "/home/xzc/cpp/src/flow/flow.cpp"
 }
 ]

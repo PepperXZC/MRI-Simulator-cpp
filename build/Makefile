@@ -181,6 +181,19 @@ encoding/fast:
 	$(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/build
 .PHONY : encoding/fast
 
+#=============================================================================
+# Target rules for targets named flow
+
+# Build rule for target.
+flow: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 flow
+.PHONY : flow
+
+# fast build rule for target.
+flow/fast:
+	$(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/build
+.PHONY : flow/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -193,6 +206,7 @@ help:
 	@echo "... SeqLoader"
 	@echo "... bSSFPSeq"
 	@echo "... encoding"
+	@echo "... flow"
 	@echo "... info"
 .PHONY : help
 
