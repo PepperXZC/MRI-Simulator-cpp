@@ -99,6 +99,7 @@ private:
     // Voxel*** body;
     void index_generate();
     void data_initialize();
+    int lower, upper; // only one vassel
 public:
     int pool_length;
     vector<Vector3d> vassel_index_vector, tissue_index_vector;

@@ -132,7 +132,7 @@ void pool::index_generate()
     // one vassel
     int width = pool_args.bandwidth / pool_args.delta;
     int center = int(pool_length / 2); int half = int(width / 2);     // usually even center
-    int lower = center - half; int upper = center + half;
+    lower = center - half; upper = center + half;
     std::cout << lower << " " << upper << std::endl;
     for (int i = 0; i < pool_length; i++){
         for (int j = 0; j < pool_length; j ++){
@@ -180,7 +180,7 @@ void pool::data_initialize()
     for (int i = 0; i < tissue_index_vector.size(); i++)
     {
         Vector3d pos_index = tissue_index_vector[i];
-        int x = int(pos_index(0)); int y = int(pos_index(1)); int z = int(pos_index(2));
+        int x = pos_index(0); int y = pos_index(1); int z = pos_index(2);
         Vector3d M_init = {0, 0, 1}; 
         body[x][y][z].initialize(pool_args.T_tissue, 0, index_to_position(pos_index), M_init);
         s += 1;
@@ -191,16 +191,15 @@ void pool::data_initialize()
 
 void pool::pool_roll()
 {
-    // for (int j = 0; j < pool_length; j++)
-    //     for (int i = pool_length - 1; i >= 0; i--)
-    //         {
-    //             for (int k = 0; k < pool_length; k++)
-    //         }
-    for (Vector3d pos_index : vassel_index_vector)
-    {
-        int x = pos_index(0); int y = pos_index(1); int z = pos_index(2);
-        
-    }
+    for (int i = lower; i <= upper; i++)
+        for (int j = pool_length - 1; j >= 0; j--)
+            {
+                for (int k = 0; k < pool_length; k++)
+                {
+                    // double T[2] << body[i][j - 1][k].T1, body[i][j - 1][k].T2};
+                    body[i][j][k].initialize(pool_args.T_vassel, 1, body[i][j][k].position, body[i][j - 1][k].M, 1, 0);
+                }
+            }
 }
 // friend bool operator< (const Voxel& vox1, const Voxel& vox2)
 // {
