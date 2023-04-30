@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/xzc/cpp/src/SeqLoader/SeqLoader.cpp" "bin/SeqLoader/CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o" "gcc" "bin/SeqLoader/CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o.d"
+  "/home/xzc/MRI-Simulator-cpp/src/SeqLoader/SeqLoader.cpp" "bin/SeqLoader/CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o" "gcc" "bin/SeqLoader/CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o.d"
   )
 
 # Targets to which this target links.

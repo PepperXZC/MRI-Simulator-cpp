@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/xzc/cpp/src/info/info.cpp" "bin/info/CMakeFiles/info.dir/info.cpp.o" "gcc" "bin/info/CMakeFiles/info.dir/info.cpp.o.d"
+  "/home/xzc/MRI-Simulator-cpp/src/info/info.cpp" "bin/info/CMakeFiles/info.dir/info.cpp.o" "gcc" "bin/info/CMakeFiles/info.dir/info.cpp.o.d"
   )
 
 # Targets to which this target links.

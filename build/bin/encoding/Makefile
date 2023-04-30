@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xzc/cpp
+CMAKE_SOURCE_DIR = /home/xzc/MRI-Simulator-cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xzc/cpp/build
+CMAKE_BINARY_DIR = /home/xzc/MRI-Simulator-cpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles /home/xzc/cpp/build/bin/encoding//CMakeFiles/progress.marks
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles /home/xzc/MRI-Simulator-cpp/build/bin/encoding//CMakeFiles/progress.marks
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/clean
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 bin/encoding/CMakeFiles/encoding.dir/rule:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/CMakeFiles/encoding.dir/rule
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/encoding/CMakeFiles/encoding.dir/rule
 .PHONY : bin/encoding/CMakeFiles/encoding.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ encoding: bin/encoding/CMakeFiles/encoding.dir/rule
 
 # fast build rule for target.
 encoding/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/build
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/build
 .PHONY : encoding/fast
 
 encoding.o: encoding.cpp.o
@@ -135,7 +135,7 @@ encoding.o: encoding.cpp.o
 
 # target to build an object file
 encoding.cpp.o:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.o
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.o
 .PHONY : encoding.cpp.o
 
 encoding.i: encoding.cpp.i
@@ -143,7 +143,7 @@ encoding.i: encoding.cpp.i
 
 # target to preprocess a source file
 encoding.cpp.i:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.i
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.i
 .PHONY : encoding.cpp.i
 
 encoding.s: encoding.cpp.s
@@ -151,7 +151,7 @@ encoding.s: encoding.cpp.s
 
 # target to generate assembly for a file
 encoding.cpp.s:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.s
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/encoding/CMakeFiles/encoding.dir/build.make bin/encoding/CMakeFiles/encoding.dir/encoding.cpp.s
 .PHONY : encoding.cpp.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

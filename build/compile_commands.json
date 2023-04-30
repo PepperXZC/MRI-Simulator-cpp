@@ -1,32 +1,32 @@
 [
 {
-  "directory": "/home/xzc/cpp/build/bin",
-  "command": "/usr/bin/g++ -DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT -isystem /usr/local/include/opencv4 -g -fopenmp -o CMakeFiles/bSSFPSeq.dir/main.cpp.o -c /home/xzc/cpp/src/main.cpp",
-  "file": "/home/xzc/cpp/src/main.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin",
+  "command": "/usr/bin/clang++ -DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT -isystem /usr/local/include/opencv4 -g -fopenmp=libomp -o CMakeFiles/bSSFPSeq.dir/main.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/main.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/main.cpp"
 },
 {
-  "directory": "/home/xzc/cpp/build/bin/Bloch",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/Bloch.dir/Bloch.cpp.o -c /home/xzc/cpp/src/Bloch/Bloch.cpp",
-  "file": "/home/xzc/cpp/src/Bloch/Bloch.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin/Bloch",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/Bloch.dir/Bloch.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/Bloch/Bloch.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/Bloch/Bloch.cpp"
 },
 {
-  "directory": "/home/xzc/cpp/build/bin/info",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/info.dir/info.cpp.o -c /home/xzc/cpp/src/info/info.cpp",
-  "file": "/home/xzc/cpp/src/info/info.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin/info",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/info.dir/info.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/info/info.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/info/info.cpp"
 },
 {
-  "directory": "/home/xzc/cpp/build/bin/SeqLoader",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o -c /home/xzc/cpp/src/SeqLoader/SeqLoader.cpp",
-  "file": "/home/xzc/cpp/src/SeqLoader/SeqLoader.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin/SeqLoader",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/SeqLoader/SeqLoader.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/SeqLoader/SeqLoader.cpp"
 },
 {
-  "directory": "/home/xzc/cpp/build/bin/encoding",
-  "command": "/usr/bin/g++  -I/home/xzc/cpp/src/encoding/$(PROJECT_SOURCE_DIR)/include -g -fopenmp -o CMakeFiles/encoding.dir/encoding.cpp.o -c /home/xzc/cpp/src/encoding/encoding.cpp",
-  "file": "/home/xzc/cpp/src/encoding/encoding.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin/encoding",
+  "command": "/usr/bin/clang++  -I/home/xzc/MRI-Simulator-cpp/src/encoding/$(PROJECT_SOURCE_DIR)/include -g -fopenmp=libomp -o CMakeFiles/encoding.dir/encoding.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/encoding/encoding.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/encoding/encoding.cpp"
 },
 {
-  "directory": "/home/xzc/cpp/build/bin/flow",
-  "command": "/usr/bin/g++   -g -fopenmp -o CMakeFiles/flow.dir/flow.cpp.o -c /home/xzc/cpp/src/flow/flow.cpp",
-  "file": "/home/xzc/cpp/src/flow/flow.cpp"
+  "directory": "/home/xzc/MRI-Simulator-cpp/build/bin/flow",
+  "command": "/usr/bin/clang++   -g -fopenmp=libomp -o CMakeFiles/flow.dir/flow.cpp.o -c /home/xzc/MRI-Simulator-cpp/src/flow/flow.cpp",
+  "file": "/home/xzc/MRI-Simulator-cpp/src/flow/flow.cpp"
 }
 ]

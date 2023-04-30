@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/xzc/cpp/src/Bloch/Bloch.cpp" "bin/Bloch/CMakeFiles/Bloch.dir/Bloch.cpp.o" "gcc" "bin/Bloch/CMakeFiles/Bloch.dir/Bloch.cpp.o.d"
+  "/home/xzc/MRI-Simulator-cpp/src/Bloch/Bloch.cpp" "bin/Bloch/CMakeFiles/Bloch.dir/Bloch.cpp.o" "gcc" "bin/Bloch/CMakeFiles/Bloch.dir/Bloch.cpp.o.d"
   )
 
 # Targets to which this target links.

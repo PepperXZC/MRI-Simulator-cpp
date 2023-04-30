@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xzc/cpp
+CMAKE_SOURCE_DIR = /home/xzc/MRI-Simulator-cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xzc/cpp/build
+CMAKE_BINARY_DIR = /home/xzc/MRI-Simulator-cpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles /home/xzc/cpp/build/bin/flow//CMakeFiles/progress.marks
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles /home/xzc/MRI-Simulator-cpp/build/bin/flow//CMakeFiles/progress.marks
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/clean
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 bin/flow/CMakeFiles/flow.dir/rule:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/CMakeFiles/flow.dir/rule
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/flow/CMakeFiles/flow.dir/rule
 .PHONY : bin/flow/CMakeFiles/flow.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ flow: bin/flow/CMakeFiles/flow.dir/rule
 
 # fast build rule for target.
 flow/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/build
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/build
 .PHONY : flow/fast
 
 flow.o: flow.cpp.o
@@ -135,7 +135,7 @@ flow.o: flow.cpp.o
 
 # target to build an object file
 flow.cpp.o:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.o
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.o
 .PHONY : flow.cpp.o
 
 flow.i: flow.cpp.i
@@ -143,7 +143,7 @@ flow.i: flow.cpp.i
 
 # target to preprocess a source file
 flow.cpp.i:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.i
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.i
 .PHONY : flow.cpp.i
 
 flow.s: flow.cpp.s
@@ -151,7 +151,7 @@ flow.s: flow.cpp.s
 
 # target to generate assembly for a file
 flow.cpp.s:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.s
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/flow/CMakeFiles/flow.dir/build.make bin/flow/CMakeFiles/flow.dir/flow.cpp.s
 .PHONY : flow.cpp.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

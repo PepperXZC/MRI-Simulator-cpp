@@ -1,2 +1,2 @@
-/usr/bin/ar qc libBloch.a CMakeFiles/Bloch.dir/Bloch.cpp.o
-/usr/bin/ranlib libBloch.a
+/usr/bin/llvm-ar qc libBloch.a CMakeFiles/Bloch.dir/Bloch.cpp.o
+/usr/bin/llvm-ranlib libBloch.a

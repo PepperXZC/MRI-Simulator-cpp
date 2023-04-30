@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include",
-                "/usr/local/include/opencv4"
+                "/usr/local/include"
             ],
             "defines": [
                 "_DEBUG",

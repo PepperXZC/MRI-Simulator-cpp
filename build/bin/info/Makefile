@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xzc/cpp
+CMAKE_SOURCE_DIR = /home/xzc/MRI-Simulator-cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xzc/cpp/build
+CMAKE_BINARY_DIR = /home/xzc/MRI-Simulator-cpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles /home/xzc/cpp/build/bin/info//CMakeFiles/progress.marks
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/cpp/build/CMakeFiles 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles /home/xzc/MRI-Simulator-cpp/build/bin/info//CMakeFiles/progress.marks
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xzc/MRI-Simulator-cpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/clean
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/preinstall
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 bin/info/CMakeFiles/info.dir/rule:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/CMakeFiles/info.dir/rule
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bin/info/CMakeFiles/info.dir/rule
 .PHONY : bin/info/CMakeFiles/info.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ info: bin/info/CMakeFiles/info.dir/rule
 
 # fast build rule for target.
 info/fast:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/build
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/build
 .PHONY : info/fast
 
 info.o: info.cpp.o
@@ -135,7 +135,7 @@ info.o: info.cpp.o
 
 # target to build an object file
 info.cpp.o:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.o
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.o
 .PHONY : info.cpp.o
 
 info.i: info.cpp.i
@@ -143,7 +143,7 @@ info.i: info.cpp.i
 
 # target to preprocess a source file
 info.cpp.i:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.i
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.i
 .PHONY : info.cpp.i
 
 info.s: info.cpp.s
@@ -151,7 +151,7 @@ info.s: info.cpp.s
 
 # target to generate assembly for a file
 info.cpp.s:
-	cd /home/xzc/cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.s
+	cd /home/xzc/MRI-Simulator-cpp/build && $(MAKE) $(MAKESILENT) -f bin/info/CMakeFiles/info.dir/build.make bin/info/CMakeFiles/info.dir/info.cpp.s
 .PHONY : info.cpp.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/xzc/cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/xzc/MRI-Simulator-cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

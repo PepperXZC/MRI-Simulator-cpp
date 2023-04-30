@@ -1,4 +1,4 @@
-# Install script for directory: /home/xzc/cpp/src
+# Install script for directory: /home/xzc/MRI-Simulator-cpp/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,31 +39,31 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/xzc/cpp/build/bin/Bloch/cmake_install.cmake")
+  include("/home/xzc/MRI-Simulator-cpp/build/bin/Bloch/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/xzc/cpp/build/bin/info/cmake_install.cmake")
+  include("/home/xzc/MRI-Simulator-cpp/build/bin/info/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/xzc/cpp/build/bin/SeqLoader/cmake_install.cmake")
+  include("/home/xzc/MRI-Simulator-cpp/build/bin/SeqLoader/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/xzc/cpp/build/bin/encoding/cmake_install.cmake")
+  include("/home/xzc/MRI-Simulator-cpp/build/bin/encoding/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/xzc/cpp/build/bin/flow/cmake_install.cmake")
+  include("/home/xzc/MRI-Simulator-cpp/build/bin/flow/cmake_install.cmake")
 endif()
 

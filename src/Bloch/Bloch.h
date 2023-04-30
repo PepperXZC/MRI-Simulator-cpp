@@ -1,16 +1,15 @@
 #ifndef BLOCHSIM_H
 #define BLOCHSIM_H
-
-#include <eigen3/Eigen/Dense>
+#include "../../include/tqdm.h"
 #include <cmath>
+#include <eigen3/Eigen/Dense>
 
 using Eigen::Matrix3d;
 using Eigen::Vector3d;
 
-struct Arg_Mats
-{
-    Matrix3d A;
-    Vector3d B;
+struct Arg_Mats {
+  Matrix3d A;
+  Vector3d B;
 };
 
 Matrix3d Rz(double theta);
