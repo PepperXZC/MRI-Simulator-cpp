@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 // Flow 要完成的内容: 将bssfp, molli的yaml序列结合到一起，组成一个新的序列
@@ -41,7 +42,7 @@ public:
 };
 
 // flow consideration is combined with molli
-class flow_experiment : public flow_sequence, Simulator {
+class flow_experiment : public Simulator {
 private:
   // vector<generate_node> generate_list;
   vector<operation> generate_list;
@@ -50,9 +51,9 @@ private:
   bool slice_selected = 0;
 
 public:
-  flow_experiment(const flow_sequence &fs, pool &pl, const Simulator &sm);
+  flow_experiment(const vector<operation> &seq, pool &pl, const Simulator &sm);
   ~flow_experiment();
-  void load_flow_sequence(pool &pl);
+  void load_flow_sequence(const vector<operation> &seq, pool &pl);
   void new_proton_generate(pool &pl, int N);
   void save_mat();
   vector<Mat> real_data_list, img_data_list;

@@ -1,0 +1,307 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/bSSFPSeq"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"add_definitions"
+		],
+		"files" : 
+		[
+			"src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 30,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-fopenmp=libomp"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 7,
+					"define" : "OPENCV_DISABLE_EIGEN_TENSOR_SUPPORT"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 0,
+					"isSystem" : true,
+					"path" : "/usr/local/include/opencv4"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "Bloch::@1d062bddf1a76e17a466"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "info::@f325708fc1197af7fe70"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "SeqLoader::@5af5fefcc6222416fa7e"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "encoding::@e7cedc7f7db06c7ff3ad"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "flow::@d475772301841a524936"
+		}
+	],
+	"id" : "bSSFPSeq::@90a2315b7a9c97cd24d2",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/usr/local/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Bloch/libBloch.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "SeqLoader/libSeqLoader.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "info/libinfo.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "encoding/libencoding.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "flow/libflow.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_gapi.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_highgui.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_ml.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_objdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_photo.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_stitching.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_video.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_videoio.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "encoding/libencoding.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Bloch/libBloch.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "SeqLoader/libSeqLoader.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "info/libinfo.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lyaml-cpp",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/llvm-14/lib/libomp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/lib/x86_64-linux-gnu/libpthread.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_dnn.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_calib3d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_features2d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_flann.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_imgproc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 0,
+				"fragment" : "/usr/local/lib/libopencv_core.so.4.7.0",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "bSSFPSeq",
+	"nameOnDisk" : "bSSFPSeq",
+	"paths" : 
+	{
+		"build" : "bin",
+		"source" : "src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

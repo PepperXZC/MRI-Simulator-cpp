@@ -17,7 +17,7 @@ int main() {
       "/home/xzc/MRI-Simulator-cpp/sequence/bSSFP_TR2o8.yaml";
   SeqLoader sequence(seq_path);
 
-  pool_info test_pool_info(6.4, 0.1, 3.2, 60, 20, 1, 2.8, 1);
+  pool_info test_pool_info(12.8, 0.1, 3.2, 60, 20, 1, 2.8, 1);
   test_pool_info.T_info_generate(1500, 50, 1000, 50);
   pool test_pool(test_pool_info, test_pool_info.fov, test_pool_info.fov,
                  test_pool_info.fov);
@@ -29,7 +29,9 @@ int main() {
   // flsq.print_flowseq();
 
   Simulator test_simulator(test_pool);
-  flow_experiment fl_program(flsq, test_pool, test_simulator);
+  // flow_experiment fl_program(flsq.flow_molli_seq, test_pool, test_simulator);
+  flow_experiment fl_program(mlsq.molli_list, test_pool, test_simulator);
+  fl_program.save_mat();
 
   // test_simulator.load_seqence(sequence, test_pool);
 

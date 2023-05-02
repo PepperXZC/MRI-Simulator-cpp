@@ -1,5 +1,6 @@
 #include "flow.h"
 #include <new>
+#include <sstream>
 #include <vector>
 
 flow_sequence::flow_sequence(const molli_sequence &msq, pool_info &pi)
@@ -86,146 +87,74 @@ void flow_sequence::print_flowseq() {
   }
 }
 
-flow_experiment::flow_experiment(const flow_sequence &fs, pool &pl,
+flow_experiment::flow_experiment(const vector<operation> &seq, pool &pl,
                                  const Simulator &sm)
-    : flow_sequence(fs), Simulator(sm) {
+    : Simulator(sm) {
   // print_flowseq();
-  load_flow_sequence(pl);
+  load_flow_sequence(seq, pl);
 }
 
 flow_experiment::~flow_experiment() {}
 
-void flow_experiment::load_flow_sequence(pool &pl) {
+void flow_experiment::load_flow_sequence(const vector<operation> &seq,
+                                         pool &pl) {
   reading = 0;
   tqdm bar;
-  for (int i = 0; i < flow_molli_seq.size(); i++) {
-    bar.progress(i, flow_molli_seq.size());
-    operation_type type = flow_molli_seq[i].type;
+  for (int i = 0; i < seq.size(); i++) {
+    bar.progress(i, seq.size());
+    operation_type type = seq[i].type;
     switch (type) {
     case NONE:
-      None_operation(pl, flow_molli_seq[i].t);
+      None_operation(pl, seq[i].t);
       break;
     case PULSE: {
-      RF_pulse(pl, flow_molli_seq[i].FA);
+      RF_pulse(pl, seq[i].FA);
       if (slice_selected == 0) {
-        slice_select(pl, pl.pool_args.z0, flow_molli_seq[i].thickness);
+        slice_select(pl, pl.pool_args.z0, seq[i].thickness);
         slice_selected = 1;
       }
-      // if (i == 74) {
-      //   std::cout << "74 pulse:" << std::endl;
-      //   std::cout << "                " << pl.body[32][0][slice_lower].M(1)
-      //             << " " << pl.body[32][0][slice_lower].position(1)
-      //             << std::endl;
-      //   std::cout << "                " << pl.body[32][1][slice_lower].M(1)
-      //             << " " << pl.body[32][1][slice_lower].position(1)
-      //             << std::endl;
-      //   std::cout << "                " << pl.body[32][2][slice_lower].M(1)
-      //             << " " << pl.body[32][2][slice_lower].position(1)
-      //             << std::endl;
-      //   std::cout << "                " << pl.body[32][3][slice_lower].M(1)
-      //             << " " << pl.body[32][3][slice_lower].position(1)
-      //             << std::endl;
-      //   std::cout << "                " << pl.body[32][4][slice_lower].M(1)
-      //             << " " << pl.body[32][4][slice_lower].position(1)
-      //             << std::endl;
-      // }
       break;
     }
-    case READOUT:
-      if (flow_molli_seq[i].readout_seq == 1)
+    case READOUT: {
+      if (seq[i].readout_seq == 1)
         reading = 1;
       else {
         reading = 0;
+        real_data_list.push_back(real_data);
+        img_data_list.push_back(img_data);
         // real_data_list.push_back(real_data);
         // img_data_list.push_back(img_data);
-        ofstream fout;
-        fout.open("real_mat.txt", std::ios::trunc);
-        fout << real_data << std::endl;
-        fout.close();
-        fout.open("img_mat.txt", std::ios::trunc);
-        fout << img_data << std::endl;
-        fout.close();
-        std::cout << "Reaout!" << std::endl;
+        // ofstream fout;
+        // fout.open("real_mat.txt", std::ios::trunc);
+        // fout << real_data << std::endl;
+        // fout.close();
+        // fout.open("img_mat.txt", std::ios::trunc);
+        // fout << img_data << std::endl;
+        // fout.close();
+        // std::cout << "Reaout!" << std::endl;
       }
-
       break;
-    case ENCODING:
-      if (i == 75) {
-        // std::cout << "hi" << std::endl;
-      }
-      // std::cout << "before encoding: " << pl.body[31][62][slice_lower].M(1)
-      //           << " " << pl.body[32][62][slice_lower].M(1) << " "
-      //           << pl.body[33][62][slice_lower].M(1) << std::endl;
-      encoding(pl, flow_molli_seq[i].t, flow_molli_seq[i].Gx,
-               flow_molli_seq[i].Gy, 0);
-      // std::cout << "encoding index: " << i << std::endl;
-      // std::cout << "                " << pl.body[32][0][slice_lower].M(1) <<
-      // " "
-      //           << pl.body[32][0][slice_lower].position(1) << std::endl;
-      // // << pl.body[32][0][slice_lower].M(1) << " "
-      // // << pl.body[33][0][slice_lower].M(1) << std::endl;
-      // std::cout << "                " << pl.body[32][1][slice_lower].M(1) <<
-      // " "
-      //           << pl.body[32][1][slice_lower].position(1) << std::endl;
-      // std::cout << "                " << pl.body[32][2][slice_lower].M(1) <<
-      // " "
-      //           << pl.body[32][2][slice_lower].position(1) << std::endl;
-      // std::cout << "                " << pl.body[32][3][slice_lower].M(1) <<
-      // " "
-      //           << pl.body[32][3][slice_lower].position(1) << std::endl;
-      // std::cout << "                " << pl.body[32][4][slice_lower].M(1) <<
-      // " "
-      //           << pl.body[32][4][slice_lower].position(1) << std::endl;
-
-      break;
-    case ADC: {
-      ADC_Readout(pl, flow_molli_seq[i].t, flow_molli_seq[i].line_index,
-                  flow_molli_seq[i].sample_index, flow_molli_seq[i].Gx,
-                  flow_molli_seq[i].Gy, 0);
-      if (flow_molli_seq[i].sample_index == 31) {
-        // std::cout << "Gx: " << flow_molli_seq[i].Gx
-        //           << " Gy: " << flow_molli_seq[i].Gy << std::endl;
-        // std::cout << "y:" << std::endl;
-        // for (int j = 0; j < pl.y_length; j++)
-        //   std::cout << pl.body[30][j][slice_lower].M(1) << " ";
-        // std::cout << std::endl;
-        // for (int j = 0; j < pl.y_length; j++)
-        //   std::cout << pl.body[0][j][slice_lower].M(1) << " ";
-        // std::cout << std::endl;
-        // std::cout << "x:" << std::endl;
-        // for (int j = 0; j < pl.y_length; j++)
-        //   std::cout << pl.body[30][j][slice_lower].M(0) << " ";
-        // std::cout << std::endl;
-        // for (int j = 0; j < pl.y_length; j++)
-        //   std::cout << pl.body[0][j][slice_lower].M(0) << " ";
-        // std::cout << "end!" << std::endl;
-        // std::cout << "Gx: " << flow_molli_seq[i].Gx
-        //           << " Gy: " << flow_molli_seq[i].Gy << std::endl;
-        // for (int i = 0; i < pl.x_length; i++)
-        //   std::cout << pl.body[i][0][slice_lower].M(1) << " ";
-        // std::cout << std::endl;
-        // for (int i = 0; i < pl.x_length; i++)
-        //   std::cout << pl.body[i][63][slice_lower].M(1) << " ";
-        // std::cout << "end!" << std::endl;
-      }
     }
 
-    break;
-    case FLOW:
-      // std::cout << "2 of pool: " << pl.body[31][2][slice_lower].M(1) << " "
-      //           << pl.body[32][2][slice_lower].M(1) << " "
-      //           << pl.body[33][2][slice_lower].M(1) << std::endl;
-      // std::cout << "end of pool: " << pl.body[31][63][slice_lower].M(1) << "
-      // "
-      //           << pl.body[32][63][slice_lower].M(1) << " "
-      //           << pl.body[33][63][slice_lower].M(1) << std::endl;
+    case ENCODING: {
+      encoding(pl, seq[i].t, seq[i].Gx, seq[i].Gy, 0);
+      break;
+    }
+
+    case ADC: {
+      ADC_Readout(pl, seq[i].t, seq[i].line_index, seq[i].sample_index,
+                  seq[i].Gx, seq[i].Gy, 0);
+      break;
+    }
+    case FLOW: {
       pl.pool_roll();
       new_proton_generate(pl, new_proton_index);
       new_proton_index += 1;
       break;
     }
+    }
     // if (flow_molli_seq[i].t != 0)
-    generate_list.push_back(flow_molli_seq[i]);
+    generate_list.push_back(seq[i]);
   }
   bar.finish();
 }
@@ -352,11 +281,20 @@ void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
 void flow_experiment::save_mat() {
   for (int i = 0; i < real_data_list.size(); i++) {
     // std::cout << test_simulator.test_Mat << std::endl;
+    std::ostringstream oss;
+    oss << i;
+    string num_str = oss.str();
+    string r_txt = "real_mat_";
+    r_txt.append(num_str);
+    r_txt.append(".txt");
+    string i_txt = "img_mat_";
+    i_txt = i_txt + num_str + ".txt";
     ofstream fout;
-    fout.open("real_mat.txt", std::ios::trunc);
+    std::cout << "path: " << r_txt << " " << i_txt << std::endl;
+    fout.open(r_txt, std::ios::trunc);
     fout << real_data_list[i] << std::endl;
     fout.close();
-    fout.open("img_mat.txt", std::ios::trunc);
+    fout.open(i_txt, std::ios::trunc);
     fout << img_data_list[i] << std::endl;
     fout.close();
   }
