@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar qc libinfo.a CMakeFiles/info.dir/info.cpp.o
-/usr/bin/llvm-ranlib libinfo.a

@@ -5,19 +5,19 @@
 - t: 117.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - t: 3000.0
   type: NONE
@@ -28,11 +28,11 @@
 - t: 317.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE
 - type: READOUT
-- t: 819.4
+- t: 640.2
   type: NONE

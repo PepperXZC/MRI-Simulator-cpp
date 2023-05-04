@@ -9,7 +9,7 @@ class info:
                  # TFE = 49,
                  fa=30,
                  z0=32,
-                 bandwidth=20,
+                 bandwidth=10,
                  index_list=[0, 5, 1, 6, 2, 7, 3, 4],
                  thickness=5,
                  b0=1.5,  # Tesla
@@ -17,7 +17,7 @@ class info:
                  # tau_x = 1.0, # 原本应该是 receiver bandwidth， 但因为序列设计
                  # receiver_bandwidth = 83.3, # khz
                  gamma=4258,  # Hz / G
-                 flow_speed=20,  # cm/s
+                 flow_speed=10,  # cm/s
                  delta=0.1,  # spatial resolution delta
                  fov=12.8,  # cm
                  # tau_y = 0.29

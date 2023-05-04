@@ -6,9 +6,9 @@
 #include <eigen3/Eigen/Dense>
 #include <fstream>
 #include <iostream>
-#include <opencv2/core.hpp>
-#include <opencv2/core/eigen.hpp>
-#include <opencv2/opencv.hpp>
+// #include <opencv2/core.hpp>
+// #include <opencv2/core/eigen.hpp>
+// #include <opencv2/opencv.hpp>
 
 using std::ofstream;
 int main() {
@@ -29,9 +29,10 @@ int main() {
   // flsq.print_flowseq();
 
   Simulator test_simulator(test_pool);
-  // flow_experiment fl_program(flsq.flow_molli_seq, test_pool, test_simulator);
-  flow_experiment fl_program(mlsq.molli_list, test_pool, test_simulator);
-  fl_program.save_mat();
+  flow_experiment fl_program(flsq.flow_molli_seq, test_pool, test_simulator);
+  // flow_experiment fl_program(mlsq.molli_list, test_pool, test_simulator);
+  std::string save_path = "/home/xzc/MRI-Simulator-cpp/result/flow_128/";
+  fl_program.save_mat(save_path);
 
   // test_simulator.load_seqence(sequence, test_pool);
 

@@ -8,6 +8,7 @@
 #include <cinttypes>
 #include <cmath>
 #include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/src/Core/Matrix.h>
 
 // #include "../../include/tqdm/tqdm.h"
 

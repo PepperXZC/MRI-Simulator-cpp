@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar qc libencoding.a CMakeFiles/encoding.dir/encoding.cpp.o
-/usr/bin/llvm-ranlib libencoding.a

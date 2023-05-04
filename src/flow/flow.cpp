@@ -120,18 +120,18 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
         reading = 1;
       else {
         reading = 0;
-        real_data_list.push_back(real_data);
-        img_data_list.push_back(img_data);
         // real_data_list.push_back(real_data);
         // img_data_list.push_back(img_data);
-        // ofstream fout;
-        // fout.open("real_mat.txt", std::ios::trunc);
-        // fout << real_data << std::endl;
-        // fout.close();
-        // fout.open("img_mat.txt", std::ios::trunc);
-        // fout << img_data << std::endl;
-        // fout.close();
-        // std::cout << "Reaout!" << std::endl;
+        real_data_list.push_back(real_data);
+        img_data_list.push_back(img_data);
+        ofstream fout;
+        fout.open("real_mat.txt", std::ios::trunc);
+        fout << real_data << std::endl;
+        fout.close();
+        fout.open("img_mat.txt", std::ios::trunc);
+        fout << img_data << std::endl;
+        fout.close();
+        std::cout << "Reaout!" << std::endl;
       }
       break;
     }
@@ -204,19 +204,8 @@ void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
     case READOUT:
       break;
     case ENCODING: {
-      // std::cout << "New, before encoding: "
-      //           << temp_pool.body[5][0][slice_lower].M(1) << " "
-      //           << temp_pool.body[6][0][slice_lower].M(1) << " "
-      //           << temp_pool.body[7][0][slice_lower].M(1) << std::endl;
       encoding(temp_pool, generate_list[i].t, generate_list[i].Gx,
                generate_list[i].Gy, 0);
-      // std::cout << "New, encoding index: " << i << std::endl;
-      // std::cout << temp_pool.body[5][0][slice_lower].M(1)
-      //           << " "
-      //           // << temp_pool.body[6][0][slice_lower].M(1) << " "
-      //           // << temp_pool.body[7][0][slice_lower].M(1) << " "
-      //           << temp_pool.body[5][0][slice_lower].position(1) <<
-      //           std::endl;
       break;
     }
     case ADC:
@@ -224,16 +213,6 @@ void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
                generate_list[i].Gy, 0);
       break;
     case FLOW: {
-// std::cout << "flow!" << std::endl;
-// std::cout << "New, before flow: "
-//           << temp_pool.body[5][0][slice_lower].position(0) << " "
-//           << temp_pool.body[5][0][slice_lower].position(1) <<
-//           std::endl;
-// std::cout << "generate: "
-//           << temp_pool.body[31 - pl.lower][0][slice_lower].M(1) << " "
-//           << temp_pool.body[32 - pl.lower][0][slice_lower].M(1) << " "
-//           << temp_pool.body[33 - pl.lower][0][slice_lower].M(1)
-// << std::endl;
 #pragma omp parallel for
       for (int p = 0; p < temp_pool.x_length; p++) {
         for (int j = 0; j < temp_pool.y_length; j++) {
@@ -278,17 +257,16 @@ void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
   //           << pl.body[33][0][slice_lower].M(1) << std::endl;
 }
 
-void flow_experiment::save_mat() {
+void flow_experiment::save_mat(const string &path) {
   for (int i = 0; i < real_data_list.size(); i++) {
     // std::cout << test_simulator.test_Mat << std::endl;
     std::ostringstream oss;
     oss << i;
     string num_str = oss.str();
     string r_txt = "real_mat_";
-    r_txt.append(num_str);
-    r_txt.append(".txt");
+    r_txt = path + r_txt + num_str + ".txt";
     string i_txt = "img_mat_";
-    i_txt = i_txt + num_str + ".txt";
+    i_txt = path + i_txt + num_str + ".txt";
     ofstream fout;
     std::cout << "path: " << r_txt << " " << i_txt << std::endl;
     fout.open(r_txt, std::ios::trunc);

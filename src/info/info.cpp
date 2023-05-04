@@ -134,7 +134,7 @@ void pool::index_generate() {
       for (int k = 0; k < z_length; k++) { // z : from bottom to top
         Vector3d pos;
         pos << i, j, k;
-        if (i >= lower && i < upper) // 27 37 longitudinal
+        if (i >= lower && i < upper) // [59 69) longitudinal
           this->vassel_index_vector.push_back(pos);
         else
           this->tissue_index_vector.push_back(pos);

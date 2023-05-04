@@ -18,13 +18,5 @@ target_link_libraries(bSSFPSeq flow)
 # target_link_libraries(bSSFPSeq ${OpenCV_LIBS})
 # include_directories(${OpenCV_INCLUDE_DIRS})
 # target_link_libraries(bSSFPSeq ${OpenCV_LIBS})
-find_package(OpenCV 4.0.0 REQUIRED)
 
-
-
-message(STATUS "OpenCV library status:")
-message(STATUS "    version: ${OpenCV_VERSION}")
-message(STATUS "    libraries: ${OpenCV_LIBS}")
-message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
-
-add_definitions(-DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT)
+# add_definitions(-DOPENCV_DISABLE_EIGEN_TENSOR_SUPPORT)

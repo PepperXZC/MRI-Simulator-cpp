@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar qc libSeqLoader.a CMakeFiles/SeqLoader.dir/SeqLoader.cpp.o
-/usr/bin/llvm-ranlib libSeqLoader.a

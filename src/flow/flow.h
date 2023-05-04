@@ -55,7 +55,7 @@ public:
   ~flow_experiment();
   void load_flow_sequence(const vector<operation> &seq, pool &pl);
   void new_proton_generate(pool &pl, int N);
-  void save_mat();
+  void save_mat(const string &path);
   vector<Mat> real_data_list, img_data_list;
 };
 
