@@ -6,6 +6,7 @@
 #include <eigen3/Eigen/Dense>
 #include <fstream>
 #include <iostream>
+#include <vector>
 // #include <opencv2/core.hpp>
 // #include <opencv2/core/eigen.hpp>
 // #include <opencv2/opencv.hpp>
@@ -17,8 +18,19 @@ int main() {
       "/home/xzc/MRI-Simulator-cpp/sequence/bSSFP_TR2o8.yaml";
   SeqLoader sequence(seq_path);
 
-  pool_info test_pool_info(12.8, 0.1, 3.2, 60, 20, 1, 2.8, 1);
-  test_pool_info.T_info_generate(1500, 50, 1000, 50);
+  pool_info test_pool_info(12.8, 0.1, 3.2, 60, 20, 1, 2.8, 1, 3);
+  double T2 = 50;
+  double T1_tissue = 1000;
+  for (int i = 0; i < test_pool_info.num_vassels; i++) {
+    double T1 = 1300 + i * 200;
+    vector<double> T_vassel = {T1, T2};
+    test_pool_info.get_T_vassel(T_vassel);
+  }
+  vector<double> T_tissue = {T1_tissue, T2};
+  test_pool_info.get_T_tissue(T_tissue);
+  vector<double> cli = {1.5, 5.5, 10.5};
+  test_pool_info.center_generate(cli);
+
   pool test_pool(test_pool_info, test_pool_info.fov, test_pool_info.fov,
                  test_pool_info.fov);
   test_pool.whole_init();
@@ -31,7 +43,7 @@ int main() {
   Simulator test_simulator(test_pool);
   flow_experiment fl_program(flsq.flow_molli_seq, test_pool, test_simulator);
   // flow_experiment fl_program(mlsq.molli_list, test_pool, test_simulator);
-  std::string save_path = "/home/xzc/MRI-Simulator-cpp/result/flow_128/";
+  std::string save_path = "/home/xzc/MRI-Simulator-cpp/result/flow_3_128/";
   fl_program.save_mat(save_path);
 
   // test_simulator.load_seqence(sequence, test_pool);

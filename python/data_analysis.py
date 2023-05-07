@@ -78,49 +78,63 @@ def eight_imgs_data(name) -> np.ndarray:
     return x, data_list
 
 
-def fit_one(T1_info, name):
-    test_info = main_info.info(T1_generate=T1_info)
+def fit_one(name):
+    # test_info = main_info.info(T1_generate=T1_info)
     x, data_list = eight_imgs_data(name)
-    # if (T1_info[0] == T1_info[1]):
-    #     for p in range(len(data_list)):
-    #         plt.subplot(2, 4, p + 1)
-    #         plt.imshow(data_list[p])
-    #     plt.show()
-    li_vassel, li_muscle = image.get_point_index(
-        test_info.length, test_info.bandwidth)
-    # print(len(li_vassel), len(li_muscle))
-    accuracy_vassel, accuracy_muscle = [], []
-    res_vassel, res_muscle = [], []
-    for (i, j) in li_vassel:
-        y = copy.deepcopy(data_list[:, i, j])
-        # print(y)
-        y[0] *= -1
-        y[1] *= -1
-        param, param_cov = curve_fit(
-            model, x, y, p0=[0.5, 1, test_info.T1[0]], maxfev=int(1e8))
-        res = param[2] * (param[1] / param[0] - 1)
-        res_vassel.append(res)
-        T1 = test_info.T1[0]
-        # print(res)
-        accuracy = 1e2 * (res - T1) / T1
-        # print(res, T1, accuracy)
-        accuracy_vassel.append(accuracy)
+    length, bandwidth = 128, 20
+
+    # li_vassel, li_muscle = image.get_point_index(
+    # test_info.length, test_info.bandwidth)
+    li_vassel, li_muscle = image.get_3_point_index(
+        length, bandwidth)
+
+# 1280: [104, 123]
+    T1vassel_list = [1300, 1500, 1700]
+    for c in range(len(li_vassel)):
+        accuracy_vassel = []
+        res_vassel = []
+        for (i, j) in li_vassel[c]:
+            y = copy.deepcopy(data_list[:, i, j])
+            # print(y)
+            y[0] *= -1
+            y[1] *= -1
+            param, param_cov = curve_fit(
+                model, x, y, p0=[0.5, 1, T1vassel_list[c]], maxfev=int(1e8))
+            res = param[2] * (param[1] / param[0] - 1)
+            res_vassel.append(res)
+            T1 = T1vassel_list[c]
+            # print(res)
+            accuracy = 1e2 * (res - T1) / T1
+            # print(res, T1, accuracy)
+            accuracy_vassel.append(accuracy)
+        print("vassel T1: ", T1vassel_list[c],
+              "mean: ", np.array(res_vassel).mean(
+        ), "sd: ", np.array(res_vassel).std(),
+            "accuracy: ", np.array(
+            accuracy_vassel).mean())
+
+    T1_tissue = 1000
+    accuracy_muscle, res_muscle = [], []
     for (i, j) in li_muscle:
         y = copy.deepcopy(data_list[:, i, j])
         y[0] *= -1
         y[1] *= -1
         param, param_cov = curve_fit(
-            model, x, y, p0=[0.5, 1, test_info.T1[1]], maxfev=int(1e8))
+            model, x, y, p0=[0.5, 1, T1_tissue], maxfev=int(1e8))
         res = param[2] * (param[1] / param[0] - 1)
         res_muscle.append(res)
-        T1 = test_info.T1[1]
+        T1 = T1_tissue
         accuracy = 1e2 * (res - T1) / T1
         accuracy_muscle.append(accuracy)
-    return res_vassel, res_muscle, accuracy_vassel, accuracy_muscle
+    print("tissue T1: ", T1_tissue,
+          "mean: ", np.array(res_muscle).mean(
+          ), "sd: ", np.array(res_muscle).std(),
+          "accuracy: ", np.array(
+              accuracy_muscle).mean())
+    # return res_vassel, res_muscle, accuracy_vassel, accuracy_muscle
 
 
 def fit_8():
-
     # plt.scatter(x, y)
     T1_muscle = np.arange(400, 1800, 100)
     T1_vassel = np.arange(400, 1800, 100)
@@ -166,8 +180,9 @@ def T1_contrast():
 
 # fit_8()
 # # plot_fft()
-# res_vassel, res_muscle, accuracy_vassel, accuracy_muscle = fit_one([
-#                                                                    1500, 1000])
+# res_vassel, res_muscle, accuracy_vassel, accuracy_muscle = fit_one(
+    # '/home/xzc/MRI-Simulator-cpp/result/flow_3_128/')
+fit_one('/home/xzc/MRI-Simulator-cpp/result/flow_3_128/')
 # print(np.array(res_vassel).mean(), np.array(
 #     accuracy_vassel).mean(), np.array(res_vassel).std())
 # print(np.array(res_muscle).mean(), np.array(

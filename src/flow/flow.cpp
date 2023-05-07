@@ -147,8 +147,10 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
       break;
     }
     case FLOW: {
-      pl.pool_roll();
-      new_proton_generate(pl, new_proton_index);
+      for (int i = 0; i < pl.pool_args.num_vassels; i++) {
+        pl.pool_roll(i);
+        new_proton_generate(i, pl, new_proton_index);
+      }
       new_proton_index += 1;
       break;
     }
@@ -159,35 +161,23 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
   bar.finish();
 }
 
-void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
-  double y_max = pl.pool_args.fov / 2;
+void flow_experiment::new_proton_generate(int vassel_index,
+                                          const pool &pl_example, int N = 0) {
+  double y_max = pl_example.pool_args.fov / 2;
   double y0 = 0;
   if (N != 0)
-    y0 = y_max + N * pl.pool_args.delta;
-
-  int pool_width = pl.upper - pl.lower;
-  pool temp_pool(pl.pool_args, pool_width * pl.pool_args.delta,
-                 pl.pool_args.delta, pl.pool_args.fov);
+    y0 = y_max + N * pl_example.pool_args.delta;
+  int pool_width =
+      pl_example.upper_list[vassel_index] - pl_example.lower_list[vassel_index];
+  pool temp_pool(pl_example.pool_args, pool_width * pl_example.pool_args.delta,
+                 pl_example.pool_args.delta, pl_example.pool_args.fov);
 
   // Voxel **new_voxels = new Voxel *[pool_width];
   // 这里是较为标准化的 pool init 操作
-  temp_pool.body = new Voxel **[temp_pool.x_length];
-#pragma omp parallel for
-  for (int i = 0; i < temp_pool.x_length; i++) {
-    temp_pool.body[i] = new Voxel *[temp_pool.y_length];
-    for (int j = 0; j < temp_pool.y_length; j++) {
-      temp_pool.body[i][j] = new Voxel[temp_pool.z_length];
-      for (int k = 0; k < temp_pool.z_length; k++) {
-        Vector3d M_init;
-        M_init << 0, 0, 1;
-        Vector3d pos;
-        pos << -pl.pool_args.fov / 2 + (i + pl.lower) * pl.pool_args.delta, y0,
-            k * pl.pool_args.delta;
-        temp_pool.body[i][j][k].initialize(pl.pool_args.T_vassel, 1, pos,
-                                           M_init, 1, 0);
-      }
-    }
-  }
+  // #pragma omp parallel for
+  temp_pool.vassel_init(pl_example.pool_args.T_vassel[vassel_index][0],
+                        pl_example.pool_args.T_vassel[vassel_index][1],
+                        pl_example.lower_list[vassel_index], y0);
   for (int i = 0; i < generate_list.size(); i++) {
     operation_type type = generate_list[i].type;
     switch (type) {
@@ -219,42 +209,32 @@ void flow_experiment::new_proton_generate(pool &pl, int N = 0) {
           for (int k = 0; k < temp_pool.z_length; k++) {
             // temp_pool.y_length == 1
             // Vector3d pos = temp_pool.body[p][j][k].position;
-            Vector3d pos;
-            pos << temp_pool.body[p][j][k].position(0),
-                temp_pool.body[p][j][k].position(1) - pl.pool_args.delta,
-                temp_pool.body[p][j][k].position(2);
-            temp_pool.body[p][j][k].initialize(pl.pool_args.T_vassel, 1, pos,
-                                               temp_pool.body[p][j][k].M, 1, 0);
-            // std::cout << temp_pool.body[p][j][k].M(0) << " "
-            //           << temp_pool.body[p][j][k].M(1) << " "
-            //           << temp_pool.body[p][j][k].M(2) << std::endl;
+            Vector3d pos = {temp_pool.body[p][j][k].position(0),
+                            temp_pool.body[p][j][k].position(1) -
+                                pl_example.pool_args.delta,
+                            temp_pool.body[p][j][k].position(2)};
+            temp_pool.body[p][j][k].initialize(
+                pl_example.pool_args.T_vassel[vassel_index][0],
+                pl_example.pool_args.T_vassel[vassel_index][1], 1, pos,
+                temp_pool.body[p][j][k].M, 1);
           }
         }
       }
-      // std::cout << "New, after flow: "
-      //           << temp_pool.body[5][0][slice_lower].position(0) << " "
-      //           << temp_pool.body[5][0][slice_lower].position(1) <<
-      //           std::endl;
       break;
     }
-      // #pragma omp parallel for
     }
   }
-  // std::cout << "generate: "
-  //           << temp_pool.body[31 - pl.lower][0][slice_lower].M(1) << " "
-  //           << temp_pool.body[32 - pl.lower][0][slice_lower].M(1) << " "
-  //           << temp_pool.body[33 - pl.lower][0][slice_lower].M(1) <<
-  //           std::endl;
+
 #pragma omp parallel for
-  for (int i = pl.lower; i < pl.upper; i++)
-    for (int k = 0; k < pl.z_length; k++)
+  for (int i = pl_example.lower_list[vassel_index];
+       i < pl_example.upper_list[vassel_index]; i++)
+    for (int k = 0; k < pl_example.z_length; k++)
       // pl.body[i][0][k].initialize(temp_pool.body[i - lower][0][k]);
-      pl.body[i][0][k].initialize(pl.pool_args.T_vassel, 1,
-                                  pl.body[i][0][k].position,
-                                  temp_pool.body[i - pl.lower][0][k].M, 1, 0);
-  // std::cout << "start of pool: " << pl.body[31][0][0].M(1) << " "
-  //           << pl.body[32][0][slice_lower].M(1) << " "
-  //           << pl.body[33][0][slice_lower].M(1) << std::endl;
+      pl_example.body[i][0][k].initialize(
+          pl_example.pool_args.T_vassel[vassel_index][0],
+          pl_example.pool_args.T_vassel[vassel_index][1], 1,
+          pl_example.body[i][0][k].position,
+          temp_pool.body[i - pl_example.lower_list[vassel_index]][0][k].M, 1);
 }
 
 void flow_experiment::save_mat(const string &path) {

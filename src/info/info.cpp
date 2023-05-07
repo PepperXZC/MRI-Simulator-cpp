@@ -1,4 +1,5 @@
 #include "info.h"
+#include <eigen3/Eigen/src/Core/Matrix.h>
 
 proton_info::proton_info(bool flow, double Mx, double My, double Mz) {
   this->flow = flow;
@@ -22,7 +23,7 @@ pool_info::pool_info() {
 
 pool_info::pool_info(double fov, double delta, double z0, double HR,
                      double flow_speed, double bandwidth, double TR,
-                     int num_vassels) {
+                     int num_protons, int num_vassels) {
   this->fov = fov;
   this->delta = delta;
   this->z0 = z0;
@@ -31,6 +32,8 @@ pool_info::pool_info(double fov, double delta, double z0, double HR,
   this->flow_speed = flow_speed;
   this->N_read = int(fov / delta);
   this->N_pe = int(fov / delta);
+  this->num_vassels = num_vassels;
+  this->num_protons = num_protons;
 
   // bSSFP
   this->tau_y = TR / 4;
@@ -43,12 +46,13 @@ pool_info::pool_info(double fov, double delta, double z0, double HR,
   this->G_yi = 1e3 * this->delta_ky / (g * this->tau_y);
 }
 
-void pool_info::T_info_generate(double T1_vassel, double T2_vassel,
-                                double T1_tissue, double T2_tissue) {
-  T_vassel[0] = T1_vassel;
-  T_vassel[1] = T2_vassel;
-  T_tissue[0] = T1_tissue;
-  T_tissue[1] = T2_tissue;
+void pool_info::get_T_vassel(const vector<double> &T) { T_vassel.push_back(T); }
+
+void pool_info::get_T_tissue(const vector<double> &T) { T_tissue = T; }
+
+void pool_info::center_generate(const vector<double> &center_li) {
+  for (int i = 0; i < center_li.size(); i++)
+    center_list.push_back(center_li[i]);
 }
 
 bool operator<(const Vector3d &vct1, const Vector3d &vct2) {
@@ -64,10 +68,10 @@ Voxel::Voxel() {
   this->flow = 0;
 }
 
-void Voxel::initialize(double T[], bool flow, Vector3d position, Vector3d M,
-                       int num_protons = 1, int index_vassel = 0) {
-  this->T1 = T[0];
-  this->T2 = T[1];
+void Voxel::initialize(double T1, double T2, bool flow, Vector3d position,
+                       Vector3d M, int num_protons = 1) {
+  this->T1 = T1;
+  this->T2 = T2;
   this->position = position;
   this->M = M;
   this->flow_speed = 0;
@@ -119,38 +123,68 @@ pool::pool(const pool_info &info, double x, double y, double z) {
   // vassel : centered
 }
 
-pool::~pool() {}
-
-void pool::index_generate() {
-  // one vassel
-  int width = pool_args.bandwidth / pool_args.delta;
-  int center = x_length / 2;
-  int half = int(width / 2); // usually even center
-  lower = center - half;
-  upper = center + half;
-  std::cout << lower << " " << upper << std::endl;
+void pool::vassel_init(double T1, double T2, int lower, double y_pos) {
+  body = new Voxel **[x_length];
   for (int i = 0; i < x_length; i++) {
+    body[i] = new Voxel *[y_length];
     for (int j = 0; j < y_length; j++) {
-      for (int k = 0; k < z_length; k++) { // z : from bottom to top
-        Vector3d pos;
-        pos << i, j, k;
-        if (i >= lower && i < upper) // [59 69) longitudinal
-          this->vassel_index_vector.push_back(pos);
-        else
-          this->tissue_index_vector.push_back(pos);
-        // std::cout << i << " " << j << " " << k << std::endl;
+      body[i][j] = new Voxel[z_length];
+      for (int k = 0; k < z_length; k++) {
+        Vector3d M = {0, 0, 1};
+        Vector3d pos = {-pool_args.fov / 2 + (i + lower) * pool_args.delta,
+                        y_pos, k * pool_args.delta};
+        body[i][j][k].initialize(T1, T2, 1, pos, M, pool_args.num_protons);
       }
     }
   }
 }
 
-// void pool::empty_init()
-// {
+pool::~pool() {}
 
-// }
+void pool::get_lower_upper(const vector<double> &center_list) {
+  for (double c : center_list) {
+    int _center = c / pool_args.delta;
+    int _half = pool_args.bandwidth / (2 * pool_args.delta);
+    // int half = int(width / 2); // usually even center
+    lower_list.push_back(_center - _half);
+    upper_list.push_back(_center + _half);
+    std::cout << _center - _half << " " << _center + _half << std::endl;
+  }
+}
+
+void pool::index_generate(const vector<double> &center_list) {
+  // one vassel
+  // int width = pool_args.bandwidth / pool_args.delta;
+  // int center = x_length / 2;
+  vassel_list_init();
+  get_lower_upper(center_list);
+#pragma omp parallel for
+  for (int i = 0; i < x_length; i++) {
+    for (int j = 0; j < y_length; j++) {
+      for (int k = 0; k < z_length; k++) { // z : from bottom to top
+        Vector3d _pos;
+        _pos << i, j, k;
+        bool flag = 0;
+        for (int index = 0; index < pool_args.num_vassels; index++) {
+          if (i >= lower_list[index] && i < upper_list[index]) {
+            vassel_index_list[index].push_back(_pos);
+            flag = 1;
+            break;
+          } // [59 69) longitudinal
+        }
+        if (flag == 0)
+          tissue_index_vector.push_back(_pos);
+      }
+    }
+  }
+}
+
+void pool::vassel_list_init() {
+  vassel_index_list.resize(pool_args.num_vassels);
+}
 
 void pool::whole_init() {
-  index_generate();
+  index_generate(pool_args.center_list);
   data_initialize();
 }
 
@@ -172,19 +206,22 @@ void pool::data_initialize() {
       body[i][j] = new Voxel[z_length];
     }
   }
-  int s = 1;
-  for (int i = 0; i < vassel_index_vector.size(); i++) {
-    Vector3d pos_index = vassel_index_vector[i];
-    int x = pos_index(0);
-    int y = pos_index(1);
-    int z = pos_index(2);
-    Vector3d M_init = {0, 0, 1};
-    body[x][y][z].initialize(pool_args.T_vassel, 1,
-                             index_to_position(pos_index), M_init);
-    // std::cout << x << " " << y << " " << z << " " <<
-    // index_to_position(pos_index)(0) << " " << index_to_position(pos_index)(1)
-    // << " " << index_to_position(pos_index)(2) << " " << std::endl;
-    s += 1;
+  for (int k = 0; k < pool_args.center_list.size(); k++) {
+    for (int i = 0; i < vassel_index_list[k].size(); i++) {
+      Vector3d pos_index = vassel_index_list[k][i];
+      int x = pos_index(0);
+      int y = pos_index(1);
+      int z = pos_index(2);
+      Vector3d M_init = {0, 0, 1};
+      body[x][y][z].initialize(
+          pool_args.T_vassel[k][0], pool_args.T_vassel[k][1], 1,
+          index_to_position(pos_index), M_init, pool_args.num_protons);
+      // std::cout << x << " " << y << " " << z << " " <<
+      // index_to_position(pos_index)(0) << " " <<
+      // index_to_position(pos_index)(1)
+      // << " " << index_to_position(pos_index)(2) << " " << std::endl;
+      // s += 1;
+    }
   }
   for (int i = 0; i < tissue_index_vector.size(); i++) {
     Vector3d pos_index = tissue_index_vector[i];
@@ -192,24 +229,25 @@ void pool::data_initialize() {
     int y = pos_index(1);
     int z = pos_index(2);
     Vector3d M_init = {0, 0, 1};
-    body[x][y][z].initialize(pool_args.T_tissue, 0,
-                             index_to_position(pos_index), M_init);
-    s += 1;
+    body[x][y][z].initialize(pool_args.T_tissue[0], pool_args.T_tissue[1], 0,
+                             index_to_position(pos_index), M_init,
+                             pool_args.num_protons);
   }
-  std::cout << s << std::endl;
 }
 
-void pool::pool_roll() {
+void pool::pool_roll(int index_vassel) {
   // std::cout << "before flow: " << body[30][61][32].M(1) << " "
   //           << body[30][62][32].M(1) << " " << body[30][63][32].M(1);
   // std::cout << "pos: " << body[30][61][32].position << " "
   //           << body[30][62][32].position << " " << body[30][63][32].position
   //           << std::endl;
-  for (int i = lower; i < upper; i++)
+  for (int i = lower_list[index_vassel]; i < upper_list[index_vassel]; i++)
     for (int j = y_length - 1; j > 0; j--)
       for (int k = 0; k < z_length; k++)
-        body[i][j][k].initialize(pool_args.T_vassel, 1, body[i][j][k].position,
-                                 body[i][j - 1][k].M, 1, 0);
+        body[i][j][k].initialize(pool_args.T_vassel[index_vassel][0],
+                                 pool_args.T_vassel[index_vassel][1], 1,
+                                 body[i][j][k].position, body[i][j - 1][k].M,
+                                 1);
   // std::cout << "after flow: " << body[30][61][32].M(1) << " "
   //           << body[30][62][32].M(1) << " " << body[30][63][32].M(1);
   // std::cout << "pos: " << body[30][61][32].position << " "
