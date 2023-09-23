@@ -113,6 +113,7 @@ public:
   vector<vector<Vector3d>> vassel_index_list;
   vector<Vector3d> tissue_index_vector;
   Vector3d index_to_position(Vector3d index);
+  bool check_vassel(pool &pl, double i, double j, double k);
   void get_lower_upper(const vector<double> &center_list);
   void vassel_list_init();
   void vassel_init(double T1, double T2, int lower, double y_pos);

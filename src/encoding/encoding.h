@@ -20,7 +20,7 @@ const int MAX_length = 999;
 class Simulator {
 private:
   void progress(bool flow);
-  void mat_initialize(int n_pe, int n_read);
+  void mat_initialize(pool_info &pl, int n_pe, int n_read);
   // Voxel ***sliced_body;
   bool slice_selected = 0;
 
@@ -36,6 +36,10 @@ public:
   void load_seqence(const SeqLoader &Seq, pool &pl);
   Matrix<double, Eigen::Dynamic, Eigen::Dynamic> test_Mat;
   Mat real_data, img_data;
+  // vector<vector<vector<double>>> Mz_data; // 目前只考虑 tk = 1
+  // 的二维情形，所以在第三维直接取[slice_lower]
+  Mat Mz_data;
+  vector<Mat> Mz_list;
   int slice_lower, slice_upper; // [slice_lower, slice_upper]
 
   // vector<Mat> result_list;

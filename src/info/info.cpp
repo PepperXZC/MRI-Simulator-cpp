@@ -183,6 +183,19 @@ void pool::vassel_list_init() {
   vassel_index_list.resize(pool_args.num_vassels);
 }
 
+bool pool::check_vassel(pool &pl, double i, double j, double k) {
+  int flag = 0;
+  // in-plane pattern
+  for (int k = 0; k < vassel_index_list.size(); k++) {
+    if (i >= lower_list[k] && i < upper_list[k])
+      flag = 1;
+  }
+  if (flag) {
+    return true;
+  } else
+    return false;
+}
+
 void pool::whole_init() {
   index_generate(pool_args.center_list);
   data_initialize();

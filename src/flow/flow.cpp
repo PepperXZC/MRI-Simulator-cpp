@@ -100,6 +100,7 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
                                          pool &pl) {
   reading = 0;
   tqdm bar;
+  int num_Mz = 0;
   for (int i = 0; i < seq.size(); i++) {
     bar.progress(i, seq.size());
     operation_type type = seq[i].type;
@@ -132,6 +133,15 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
         fout << img_data << std::endl;
         fout.close();
         std::cout << "Reaout!" << std::endl;
+        Mat temp_Mz;
+        for (int i = 0; i < Mz_list.size(); i++) {
+          temp_Mz += Mz_list[i];
+        }
+        temp_Mz /= num_Mz;
+        fout.open("mat_data.txt", std::ios::trunc);
+        fout << temp_Mz << std::endl;
+        fout.close();
+        
       }
       break;
     }
@@ -144,6 +154,7 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
     case ADC: {
       ADC_Readout(pl, seq[i].t, seq[i].line_index, seq[i].sample_index,
                   seq[i].Gx, seq[i].Gy, 0);
+      num_Mz += 1;
       break;
     }
     case FLOW: {
@@ -247,6 +258,8 @@ void flow_experiment::save_mat(const string &path) {
     r_txt = path + r_txt + num_str + ".txt";
     string i_txt = "img_mat_";
     i_txt = path + i_txt + num_str + ".txt";
+    string z_txt = "Mz_mat_";
+    i_txt = path + z_txt + num_str + ".txt";
     ofstream fout;
     std::cout << "path: " << r_txt << " " << i_txt << std::endl;
     fout.open(r_txt, std::ios::trunc);
@@ -254,6 +267,9 @@ void flow_experiment::save_mat(const string &path) {
     fout.close();
     fout.open(i_txt, std::ios::trunc);
     fout << img_data_list[i] << std::endl;
+    fout.close();
+    fout.open(z_txt, std::ios::trunc);
+    fout << Mz_list[i] << std::endl;
     fout.close();
   }
 }

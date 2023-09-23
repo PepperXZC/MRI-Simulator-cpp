@@ -1,14 +1,16 @@
 #include "encoding.h"
 
-void Simulator::mat_initialize(int n_pe, int n_read) {
+void Simulator::mat_initialize(pool_info &pl_info, int n_pe, int n_read) {
   real_data.resize(n_pe, n_read);
   img_data.resize(n_pe, n_read);
   test_Mat.resize(n_pe, n_read);
+  Mz_data.resize(pl_info.fov, pl_info.fov);
 }
 
 Simulator::Simulator(pool &sample) {
   // this->pool_ptr = &sample;
-  mat_initialize(sample.pool_args.N_pe, sample.pool_args.N_read);
+  mat_initialize(sample.pool_args, sample.pool_args.N_pe,
+                 sample.pool_args.N_read);
   slice_lower = 0;
   slice_upper = sample.z_length - 1;
 }
@@ -145,6 +147,8 @@ void Simulator::ADC_Readout(pool &sample, double t, int line_index,
   // default: center - started
   double sum_test_data = 0;
   double real_sum = 0, img_sum = 0;
+  double Mz = 0;
+  int Mz_size = 0;
 #pragma omp parallel for reduction(+ : real_sum, img_sum, sum_test_data)
   // #pragma omp parallel for reduction(+:sum_test_data)
   for (int i = 0; i < sample.x_length; i++) {
@@ -173,23 +177,24 @@ void Simulator::ADC_Readout(pool &sample, double t, int line_index,
         proton_info sum(sample.body[i][j][k].flow, sample.body[i][j][k].M);
         complex<double> Mxy = sum.Mxy;
         // real_sum += Mxy.real() ; img_sum += Mxy.imag();
+
+        // making img
         real_sum += sample.body[i][j][k].M(0);
         img_sum += sample.body[i][j][k].M(1);
-        // if (samsamplee_index % 2 == 0){
-        //     real_sum += ( - Mxy.real() ) ; img_sum += ( - Mxy.imag() );
+
+        // if (sample.check_vassel(i, j, k)) {
+        // Mz(i, j, k) += sample.body[i][j][k].M(2);
         // }
-        // else{
-        //     real_sum  += Mxy.real() ; img_sum += Mxy.imag();
-        // }
-        // only sum the mean of all protons in each voxel
-        // sum_test_data = sum_test_data + sum.amsampleitude;
+        if (k == slice_lower)
+          Mz_data(i, j) += sample.body[i][j][k].M(2);
       }
+      Mz_data(i, j) /= slice_upper - slice_lower + 1;
     }
   }
-
+  // only for Mz generation
+  Mz_list.push_back(Mz_data);
   real_data(line_index, samsamplee_index) = real_sum;
   img_data(line_index, samsamplee_index) = img_sum;
-  //   std::cout << "hi" << std::endl;
 }
 
 void Simulator::load_seqence(const SeqLoader &Seq, pool &sample) {
