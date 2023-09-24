@@ -134,6 +134,7 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
         fout.close();
         std::cout << "Reaout!" << std::endl;
         Mat temp_Mz;
+        temp_Mz.resize(pl.pool_args.N_pe, pl.pool_args.N_read);
         for (int i = 0; i < Mz_list.size(); i++) {
           temp_Mz += Mz_list[i];
         }
@@ -260,7 +261,7 @@ void flow_experiment::save_mat(const string &path) {
     string i_txt = "img_mat_";
     i_txt = path + i_txt + num_str + ".txt";
     string z_txt = "Mz_mat_";
-    i_txt = path + z_txt + num_str + ".txt";
+    z_txt = path + z_txt + num_str + ".txt";
     ofstream fout;
     std::cout << "path: " << r_txt << " " << i_txt << std::endl;
     fout.open(r_txt, std::ios::trunc);
