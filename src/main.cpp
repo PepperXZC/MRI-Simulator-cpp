@@ -17,11 +17,11 @@ int main() {
   std::string seq_path =
       "/home/xzc/MRI-Simulator-cpp/sequence/bSSFP_TR2o8.yaml";
   SeqLoader sequence(seq_path);
-  for (double v = 0; v < 50; v += 5) {
+  for (double v = 1; v < 50; v += 5) {
     pool_info test_pool_info(12.8, 0.1, 3.2, 60, v, 1, 2.8, 1, 3);
     double T2 = 50;
     double T1_tissue = 1000;
-    for (int i = 1; i < test_pool_info.num_vassels; i++) {
+    for (int i = 0; i < test_pool_info.num_vassels; i++) {
       double T1 = 1300 + i * 200;
       vector<double> T_vassel = {T1, T2};
       test_pool_info.get_T_vassel(T_vassel);
