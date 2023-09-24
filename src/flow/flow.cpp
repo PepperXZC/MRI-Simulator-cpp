@@ -142,7 +142,8 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
         fout.open("mat_data.txt", std::ios::trunc);
         fout << temp_Mz << std::endl;
         fout.close();
-        Mz_data_list.push_back(Mz_list);
+        // Mz_data_list.push_back(Mz_list);
+        Mz_data_list.push_back(temp_Mz);
         Mz_list.clear();
       }
       break;
@@ -271,7 +272,7 @@ void flow_experiment::save_mat(const string &path) {
     fout << img_data_list[i] << std::endl;
     fout.close();
     fout.open(z_txt, std::ios::trunc);
-    fout << Mz_list[i] << std::endl;
+    fout << Mz_data_list[i] << std::endl;
     fout.close();
   }
 }

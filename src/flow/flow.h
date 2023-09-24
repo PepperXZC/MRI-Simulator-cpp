@@ -57,7 +57,7 @@ public:
   void new_proton_generate(int vassel_index, const pool &pl, int N);
   void save_mat(const string &path);
   vector<Mat> real_data_list, img_data_list; // 目前只考虑
-  vector<vector<Mat>> Mz_data_list;
+  vector<Mat> Mz_data_list;
 };
 
 #endif

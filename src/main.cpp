@@ -21,7 +21,7 @@ int main() {
   pool_info test_pool_info(12.8, 0.1, 3.2, 60, 20, 1, 2.8, 1, 3);
   double T2 = 50;
   double T1_tissue = 1000;
-  for (int i = 0; i < test_pool_info.num_vassels; i++) {
+  for (int i = 1; i < test_pool_info.num_vassels; i++) {
     double T1 = 1300 + i * 200;
     vector<double> T_vassel = {T1, T2};
     test_pool_info.get_T_vassel(T_vassel);
