@@ -4,7 +4,7 @@ void Simulator::mat_initialize(pool_info &pl_info, int n_pe, int n_read) {
   real_data.resize(n_pe, n_read);
   img_data.resize(n_pe, n_read);
   test_Mat.resize(n_pe, n_read);
-  Mz_data.resize(pl_info.fov, pl_info.fov);
+  Mz_data.resize(n_pe, n_read);
 }
 
 Simulator::Simulator(pool &sample) {
@@ -26,7 +26,7 @@ void Simulator::slice_select(pool &sample, double z0, double thickness) {
 void Simulator::RF_pulse(pool &sample, double fa) {
   // default x_rot
   Matrix3d fa_mat = Rx(fa * M_PI / 180);
-#pragma omp parallel for
+  // #pragma omp parallel for
   for (int i = 0; i < sample.x_length; i++)
     // #pragma omp parallel for
     for (int j = 0; j < sample.y_length; j++)
@@ -48,7 +48,7 @@ void Simulator::None_operation(pool &sample, double t) {
 
 void Simulator::encoding(pool &sample, double t, double Gx = 0, double Gy = 0,
                          double Gz = 0) {
-#pragma omp parallel for
+  // #pragma omp parallel for
   for (int i = 0; i < sample.x_length; i++) {
     for (int j = 0; j < sample.y_length; j++) {
       for (int k = slice_lower; k <= slice_upper; k++) {
@@ -149,7 +149,7 @@ void Simulator::ADC_Readout(pool &sample, double t, int line_index,
   double real_sum = 0, img_sum = 0;
   double Mz = 0;
   int Mz_size = 0;
-#pragma omp parallel for reduction(+ : real_sum, img_sum, sum_test_data)
+  // #pragma omp parallel for reduction(+ : real_sum, img_sum, sum_test_data)
   // #pragma omp parallel for reduction(+:sum_test_data)
   for (int i = 0; i < sample.x_length; i++) {
     // #pragma omp parallel for
@@ -188,7 +188,7 @@ void Simulator::ADC_Readout(pool &sample, double t, int line_index,
         if (k == slice_lower)
           Mz_data(i, j) += sample.body[i][j][k].M(2);
       }
-      Mz_data(i, j) /= slice_upper - slice_lower + 1;
+      // Mz_data(i, j) /= (slice_upper - slice_lower + 1);
     }
   }
   // only for Mz generation

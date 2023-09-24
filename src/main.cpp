@@ -43,7 +43,7 @@ int main() {
   Simulator test_simulator(test_pool);
   flow_experiment fl_program(flsq.flow_molli_seq, test_pool, test_simulator);
   // flow_experiment fl_program(mlsq.molli_list, test_pool, test_simulator);
-  std::string save_path = "/home/xzc/MRI-Simulator-cpp/result/flow_3_128/";
+  std::string save_path = "/home/xzc/MRI-Simulator-cpp/result/flow_Mz_128/";
   fl_program.save_mat(save_path);
 
   // test_simulator.load_seqence(sequence, test_pool);

@@ -141,7 +141,8 @@ void flow_experiment::load_flow_sequence(const vector<operation> &seq,
         fout.open("mat_data.txt", std::ios::trunc);
         fout << temp_Mz << std::endl;
         fout.close();
-        
+        Mz_data_list.push_back(Mz_list);
+        Mz_list.clear();
       }
       break;
     }
